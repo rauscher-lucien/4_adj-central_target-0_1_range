@@ -1,0 +1,50 @@
+2024-03-05 19:39:56 - INFO - Not running on server, using default data directory: C:\Users\rausc\Documents\EMBL\data\test_data_2
+2024-03-05 19:39:56 - INFO - Default project name: test_data_2-test-1
+2024-03-05 19:39:56 - INFO - GPU is not available
+2024-03-05 19:39:56 - INFO - C:\Users\rausc\Documents\EMBL\data\test_data_2
+2024-03-05 19:39:57 - INFO - Global min and max parameters saved to C:\Users\rausc\Documents\EMBL\data\test_data_2\min_max_params.pkl
+2024-03-05 19:39:57 - INFO - Global mean and std parameters saved to C:\Users\rausc\Documents\EMBL\data\test_data_2\normalization_params.pkl
+2024-03-05 19:39:57 - INFO - Execution time: 0.21811962127685547 seconds
+2024-03-05 19:40:02 - INFO - TRAIN: EPOCH 1: BATCH 0001/0023: LOSS: 0.0369
+2024-03-05 19:40:03 - INFO - TRAIN: EPOCH 1: BATCH 0002/0023: LOSS: 0.0347
+2024-03-05 19:40:04 - INFO - TRAIN: EPOCH 1: BATCH 0003/0023: LOSS: 0.0318
+2024-03-05 19:40:05 - INFO - TRAIN: EPOCH 1: BATCH 0004/0023: LOSS: 0.0290
+2024-03-05 19:40:05 - INFO - TRAIN: EPOCH 1: BATCH 0005/0023: LOSS: 0.0274
+2024-03-05 19:40:06 - INFO - TRAIN: EPOCH 1: BATCH 0006/0023: LOSS: 0.0255
+2024-03-05 19:40:07 - INFO - TRAIN: EPOCH 1: BATCH 0007/0023: LOSS: 0.0246
+2024-03-05 19:40:08 - INFO - TRAIN: EPOCH 1: BATCH 0008/0023: LOSS: 0.0234
+2024-03-05 19:40:08 - INFO - TRAIN: EPOCH 1: BATCH 0009/0023: LOSS: 0.0223
+2024-03-05 19:40:09 - INFO - TRAIN: EPOCH 1: BATCH 0010/0023: LOSS: 0.0212
+2024-03-05 19:40:10 - INFO - TRAIN: EPOCH 1: BATCH 0011/0023: LOSS: 0.0201
+2024-03-05 19:40:10 - INFO - TRAIN: EPOCH 1: BATCH 0012/0023: LOSS: 0.0192
+2024-03-05 19:40:11 - INFO - TRAIN: EPOCH 1: BATCH 0013/0023: LOSS: 0.0185
+2024-03-05 19:40:12 - INFO - TRAIN: EPOCH 1: BATCH 0014/0023: LOSS: 0.0178
+2024-03-05 19:40:13 - INFO - TRAIN: EPOCH 1: BATCH 0015/0023: LOSS: 0.0173
+2024-03-05 19:40:13 - INFO - TRAIN: EPOCH 1: BATCH 0016/0023: LOSS: 0.0167
+2024-03-05 19:40:14 - INFO - TRAIN: EPOCH 1: BATCH 0017/0023: LOSS: 0.0163
+2024-03-05 19:40:15 - INFO - TRAIN: EPOCH 1: BATCH 0018/0023: LOSS: 0.0158
+2024-03-05 19:40:16 - INFO - TRAIN: EPOCH 1: BATCH 0019/0023: LOSS: 0.0154
+2024-03-05 19:40:17 - INFO - TRAIN: EPOCH 1: BATCH 0020/0023: LOSS: 0.0150
+2024-03-05 19:40:18 - INFO - TRAIN: EPOCH 1: BATCH 0021/0023: LOSS: 0.0146
+2024-03-05 19:40:18 - INFO - TRAIN: EPOCH 1: BATCH 0022/0023: LOSS: 0.0143
+2024-03-05 19:40:19 - INFO - TRAIN: EPOCH 1: BATCH 0023/0023: LOSS: 0.0140
+2024-03-05 19:40:25 - INFO - TRAIN: EPOCH 2: BATCH 0001/0023: LOSS: 0.0061
+2024-03-05 19:40:26 - INFO - TRAIN: EPOCH 2: BATCH 0002/0023: LOSS: 0.0061
+2024-03-05 19:40:27 - INFO - TRAIN: EPOCH 2: BATCH 0003/0023: LOSS: 0.0063
+2024-03-05 19:40:28 - INFO - TRAIN: EPOCH 2: BATCH 0004/0023: LOSS: 0.0063
+2024-03-05 19:40:28 - INFO - TRAIN: EPOCH 2: BATCH 0005/0023: LOSS: 0.0061
+2024-03-05 19:40:29 - INFO - TRAIN: EPOCH 2: BATCH 0006/0023: LOSS: 0.0060
+2024-03-05 19:40:30 - ERROR - Traceback (most recent call last):
+2024-03-05 19:40:30 - ERROR -   File "c:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\main.py", line 112, in <module>
+2024-03-05 19:40:30 - ERROR - main()
+2024-03-05 19:40:30 - ERROR -   File "c:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\main.py", line 108, in main
+2024-03-05 19:40:30 - ERROR - TRAINER.train()
+2024-03-05 19:40:30 - ERROR -   File "c:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\train.py", line 185, in train
+2024-03-05 19:40:30 - ERROR - plt.imsave(os.path.join(self.train_results_dir, f"{j}_{c}_input.png"), input_img, cmap='gray')
+2024-03-05 19:40:30 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\pyplot.py", line 2396, in imsave
+2024-03-05 19:40:30 - ERROR - matplotlib.image.imsave(fname, arr, **kwargs)
+2024-03-05 19:40:30 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\matplotlib\image.py", line 1656, in imsave
+2024-03-05 19:40:30 - ERROR - image.save(fname, **pil_kwargs)
+2024-03-05 19:40:30 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\PIL\Image.py", line 2435, in save
+2024-03-05 19:40:30 - ERROR - fp = builtins.open(filename, "w+b")
+2024-03-05 19:40:30 - ERROR - KeyboardInterrupt
