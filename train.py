@@ -142,6 +142,9 @@ class Trainer:
                 # Squeeze the unnecessary outer batch dimension
                 input_stack, target_img = data
 
+                input_stack = input_stack.to(self.device)
+                target_img = target_img.to(self.device)
+
                 # Forward pass: compute the network output on input_img
                 output_img = net(input_stack)
 
