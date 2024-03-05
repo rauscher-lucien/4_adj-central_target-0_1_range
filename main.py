@@ -97,8 +97,8 @@ def main():
     data_dict['batch_size'] = 8
     data_dict['lr'] = 1e-4
 
-    data_dict['num_freq_disp'] = 1
-    data_dict['num_freq_save'] = 1
+    data_dict['num_freq_disp'] = 50
+    data_dict['num_freq_save'] = 10
 
     data_dict['train_continue'] = train_continue
     data_dict['load_epoch'] = load_epoch
