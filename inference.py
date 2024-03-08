@@ -17,7 +17,7 @@ from dataset import *
 
 def load(dir_chck, netG, epoch, optimG=[]):
 
-    dict_net = torch.load('%s/model_epoch%04d.pth' % (dir_chck, epoch))
+    dict_net = torch.load('%s/model_epoch%04d.pth' % (dir_chck, epoch), map_location=torch.device('cpu'))
 
     print('Loaded %dth network' % epoch)
 
@@ -30,12 +30,12 @@ def main():
 
     #********************************************************#
 
-    # project_dir = os.path.join('Z:\\', 'members', 'Rauscher', 'projects', 'OCM_denoising-n2n_training')
-    project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
+    project_dir = os.path.join('Z:\\', 'members', 'Rauscher', 'projects', '4_adj-central_target-0_1_range')
+    # project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
     data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'test_data_2')
-    name = 'test-model-1'
-    inference_name = 'inference_23'
-    load_epoch = 23
+    name = 'test_data_2-test-1'
+    inference_name = 'inference_150'
+    load_epoch = 150
 
 
     #********************************************************#
@@ -62,7 +62,7 @@ def main():
         device = torch.device("cpu")
 
     min, max = load_min_max_params(data_dir=data_dir)
-    mean, std = load_normalization_params(data_dir=data_dir)
+    # mean, std = load_normalization_params(data_dir=data_dir)
     
     inf_transform = transforms.Compose([
         MinMaxNormalizeInference(min, max),

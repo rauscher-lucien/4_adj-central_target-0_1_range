@@ -76,8 +76,8 @@ def main():
         print(f"Load epoch: {load_epoch}")
     else:
 
-        data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'test_data_2')
-        project_name = 'test_data_2-test-1'
+        data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'big_data_small')
+        project_name = 'big_data_small-test-1'
         train_continue = 'off'
         load_epoch = 1
         project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')

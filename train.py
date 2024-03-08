@@ -100,7 +100,7 @@ class Trainer:
             dataset_train,
             batch_size=self.batch_size,
             shuffle=True,
-            num_workers=2)
+            num_workers=0)
 
         num_train = len(dataset_train)
         num_batch_train = int((num_train / self.batch_size) + ((num_train % self.batch_size) != 0))

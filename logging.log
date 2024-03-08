@@ -48,3 +48,187 @@
 2024-03-05 19:40:30 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\PIL\Image.py", line 2435, in save
 2024-03-05 19:40:30 - ERROR - fp = builtins.open(filename, "w+b")
 2024-03-05 19:40:30 - ERROR - KeyboardInterrupt
+2024-03-08 18:00:15 - INFO - Not running on server, using default data directory: C:\Users\rausc\Documents\EMBL\data\big_data_small
+2024-03-08 18:00:15 - INFO - Default project name: big_data_small-test-1
+2024-03-08 18:00:15 - INFO - GPU is not available
+2024-03-08 18:00:15 - INFO - C:\Users\rausc\Documents\EMBL\data\big_data_small
+2024-03-08 18:00:25 - INFO - Global min and max parameters saved to C:\Users\rausc\Documents\EMBL\data\big_data_small\min_max_params.pkl
+2024-03-08 18:00:25 - INFO - Execution time: 9.317814826965332 seconds
+2024-03-08 18:00:46 - ERROR - Traceback (most recent call last):
+2024-03-08 18:00:46 - ERROR -   File "c:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\main.py", line 112, in <module>
+2024-03-08 18:00:46 - ERROR - main()
+2024-03-08 18:00:46 - ERROR -   File "c:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\main.py", line 108, in main
+2024-03-08 18:00:46 - ERROR - TRAINER.train()
+2024-03-08 18:00:46 - ERROR -   File "c:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\train.py", line 135, in train
+2024-03-08 18:00:46 - ERROR - for batch, data in enumerate(loader_train, 1):
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\utils\data\dataloader.py", line 438, in __iter__
+2024-03-08 18:00:46 - ERROR - return self._get_iterator()
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\utils\data\dataloader.py", line 386, in _get_iterator
+2024-03-08 18:00:46 - ERROR - return _MultiProcessingDataLoaderIter(self)
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\utils\data\dataloader.py", line 1039, in __init__
+2024-03-08 18:00:46 - ERROR - w.start()
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 121, in start
+2024-03-08 18:00:46 - ERROR - self._popen = self._Popen(self)
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\multiprocessing\context.py", line 224, in _Popen
+2024-03-08 18:00:46 - ERROR - return _default_context.get_context().Process._Popen(process_obj)
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\multiprocessing\context.py", line 336, in _Popen
+2024-03-08 18:00:46 - ERROR - return Popen(process_obj)
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\multiprocessing\popen_spawn_win32.py", line 93, in __init__
+2024-03-08 18:00:46 - ERROR - reduction.dump(process_obj, to_child)
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\multiprocessing\reduction.py", line 60, in dump
+2024-03-08 18:00:46 - ERROR - Traceback (most recent call last):
+2024-03-08 18:00:46 - ERROR -   File "<string>", line 1, in <module>
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\multiprocessing\spawn.py", line 116, in spawn_main
+2024-03-08 18:00:46 - ERROR - exitcode = _main(fd, parent_sentinel)
+2024-03-08 18:00:46 - ERROR -   File "C:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\multiprocessing\spawn.py", line 126, in _main
+2024-03-08 18:00:46 - ERROR - self = reduction.pickle.load(from_parent)
+2024-03-08 18:00:46 - ERROR - _pickle
+2024-03-08 18:00:46 - ERROR - .
+2024-03-08 18:00:46 - ERROR - UnpicklingError
+2024-03-08 18:00:46 - ERROR - :
+2024-03-08 18:00:46 - ERROR - pickle data was truncated
+2024-03-08 18:00:46 - ERROR - ForkingPickler(file, protocol).dump(obj)
+2024-03-08 18:00:46 - ERROR - OSError
+2024-03-08 18:00:46 - ERROR - :
+2024-03-08 18:00:46 - ERROR - [Errno 22] Invalid argument
+2024-03-08 18:01:39 - INFO - Not running on server, using default data directory: C:\Users\rausc\Documents\EMBL\data\big_data_small
+2024-03-08 18:01:39 - INFO - Default project name: big_data_small-test-1
+2024-03-08 18:01:39 - INFO - GPU is not available
+2024-03-08 18:01:39 - INFO - C:\Users\rausc\Documents\EMBL\data\big_data_small
+2024-03-08 18:01:51 - INFO - Global min and max parameters saved to C:\Users\rausc\Documents\EMBL\data\big_data_small\min_max_params.pkl
+2024-03-08 18:01:51 - INFO - Execution time: 12.498514652252197 seconds
+2024-03-08 18:02:16 - INFO - Backend TkAgg is interactive backend. Turning interactive mode on.
+2024-03-08 18:02:16 - INFO - Backend TkAgg is interactive backend. Turning interactive mode on.
+2024-03-08 18:03:51 - INFO - Not running on server, using default data directory: C:\Users\rausc\Documents\EMBL\data\big_data_small
+2024-03-08 18:03:51 - INFO - Default project name: big_data_small-test-1
+2024-03-08 18:03:51 - INFO - GPU is not available
+2024-03-08 18:03:51 - INFO - C:\Users\rausc\Documents\EMBL\data\big_data_small
+2024-03-08 18:04:04 - INFO - Global min and max parameters saved to C:\Users\rausc\Documents\EMBL\data\big_data_small\min_max_params.pkl
+2024-03-08 18:04:04 - INFO - Execution time: 12.609001159667969 seconds
+2024-03-08 18:04:16 - INFO - TRAIN: EPOCH 1: BATCH 0001/0753: LOSS: 0.0547
+2024-03-08 18:04:17 - INFO - TRAIN: EPOCH 1: BATCH 0002/0753: LOSS: 0.0577
+2024-03-08 18:04:17 - INFO - TRAIN: EPOCH 1: BATCH 0003/0753: LOSS: 0.0519
+2024-03-08 18:04:18 - INFO - TRAIN: EPOCH 1: BATCH 0004/0753: LOSS: 0.0531
+2024-03-08 18:04:18 - INFO - TRAIN: EPOCH 1: BATCH 0005/0753: LOSS: 0.0568
+2024-03-08 18:04:19 - INFO - TRAIN: EPOCH 1: BATCH 0006/0753: LOSS: 0.0568
+2024-03-08 18:04:19 - INFO - TRAIN: EPOCH 1: BATCH 0007/0753: LOSS: 0.0560
+2024-03-08 18:04:20 - INFO - TRAIN: EPOCH 1: BATCH 0008/0753: LOSS: 0.0541
+2024-03-08 18:04:20 - INFO - TRAIN: EPOCH 1: BATCH 0009/0753: LOSS: 0.0541
+2024-03-08 18:04:21 - INFO - TRAIN: EPOCH 1: BATCH 0010/0753: LOSS: 0.0535
+2024-03-08 18:04:21 - INFO - TRAIN: EPOCH 1: BATCH 0011/0753: LOSS: 0.0537
+2024-03-08 18:04:22 - INFO - TRAIN: EPOCH 1: BATCH 0012/0753: LOSS: 0.0522
+2024-03-08 18:04:22 - INFO - TRAIN: EPOCH 1: BATCH 0013/0753: LOSS: 0.0512
+2024-03-08 18:04:23 - INFO - TRAIN: EPOCH 1: BATCH 0014/0753: LOSS: 0.0497
+2024-03-08 18:04:23 - INFO - TRAIN: EPOCH 1: BATCH 0015/0753: LOSS: 0.0485
+2024-03-08 18:04:24 - INFO - TRAIN: EPOCH 1: BATCH 0016/0753: LOSS: 0.0480
+2024-03-08 18:04:24 - INFO - TRAIN: EPOCH 1: BATCH 0017/0753: LOSS: 0.0478
+2024-03-08 18:04:25 - INFO - TRAIN: EPOCH 1: BATCH 0018/0753: LOSS: 0.0466
+2024-03-08 18:04:25 - INFO - TRAIN: EPOCH 1: BATCH 0019/0753: LOSS: 0.0461
+2024-03-08 18:04:26 - INFO - TRAIN: EPOCH 1: BATCH 0020/0753: LOSS: 0.0457
+2024-03-08 18:04:26 - INFO - TRAIN: EPOCH 1: BATCH 0021/0753: LOSS: 0.0447
+2024-03-08 18:04:27 - INFO - TRAIN: EPOCH 1: BATCH 0022/0753: LOSS: 0.0442
+2024-03-08 18:04:27 - INFO - TRAIN: EPOCH 1: BATCH 0023/0753: LOSS: 0.0429
+2024-03-08 18:04:28 - INFO - TRAIN: EPOCH 1: BATCH 0024/0753: LOSS: 0.0424
+2024-03-08 18:04:28 - INFO - TRAIN: EPOCH 1: BATCH 0025/0753: LOSS: 0.0416
+2024-03-08 18:04:29 - INFO - TRAIN: EPOCH 1: BATCH 0026/0753: LOSS: 0.0409
+2024-03-08 18:04:29 - INFO - TRAIN: EPOCH 1: BATCH 0027/0753: LOSS: 0.0399
+2024-03-08 18:04:30 - INFO - TRAIN: EPOCH 1: BATCH 0028/0753: LOSS: 0.0395
+2024-03-08 18:04:31 - INFO - TRAIN: EPOCH 1: BATCH 0029/0753: LOSS: 0.0394
+2024-03-08 18:04:31 - INFO - TRAIN: EPOCH 1: BATCH 0030/0753: LOSS: 0.0389
+2024-03-08 18:04:32 - INFO - TRAIN: EPOCH 1: BATCH 0031/0753: LOSS: 0.0387
+2024-03-08 18:04:32 - INFO - TRAIN: EPOCH 1: BATCH 0032/0753: LOSS: 0.0384
+2024-03-08 18:04:33 - INFO - TRAIN: EPOCH 1: BATCH 0033/0753: LOSS: 0.0378
+2024-03-08 18:04:33 - INFO - TRAIN: EPOCH 1: BATCH 0034/0753: LOSS: 0.0374
+2024-03-08 18:04:34 - INFO - TRAIN: EPOCH 1: BATCH 0035/0753: LOSS: 0.0372
+2024-03-08 18:04:34 - INFO - TRAIN: EPOCH 1: BATCH 0036/0753: LOSS: 0.0369
+2024-03-08 18:04:35 - INFO - TRAIN: EPOCH 1: BATCH 0037/0753: LOSS: 0.0365
+2024-03-08 18:04:36 - INFO - TRAIN: EPOCH 1: BATCH 0038/0753: LOSS: 0.0360
+2024-03-08 18:04:36 - INFO - TRAIN: EPOCH 1: BATCH 0039/0753: LOSS: 0.0356
+2024-03-08 18:04:37 - INFO - TRAIN: EPOCH 1: BATCH 0040/0753: LOSS: 0.0351
+2024-03-08 18:04:37 - INFO - TRAIN: EPOCH 1: BATCH 0041/0753: LOSS: 0.0347
+2024-03-08 18:04:38 - INFO - TRAIN: EPOCH 1: BATCH 0042/0753: LOSS: 0.0343
+2024-03-08 18:04:38 - INFO - TRAIN: EPOCH 1: BATCH 0043/0753: LOSS: 0.0339
+2024-03-08 18:04:39 - INFO - TRAIN: EPOCH 1: BATCH 0044/0753: LOSS: 0.0336
+2024-03-08 18:04:40 - INFO - TRAIN: EPOCH 1: BATCH 0045/0753: LOSS: 0.0333
+2024-03-08 18:04:40 - INFO - TRAIN: EPOCH 1: BATCH 0046/0753: LOSS: 0.0329
+2024-03-08 18:04:41 - INFO - TRAIN: EPOCH 1: BATCH 0047/0753: LOSS: 0.0326
+2024-03-08 18:04:41 - INFO - TRAIN: EPOCH 1: BATCH 0048/0753: LOSS: 0.0322
+2024-03-08 18:04:42 - INFO - TRAIN: EPOCH 1: BATCH 0049/0753: LOSS: 0.0317
+2024-03-08 18:04:42 - INFO - TRAIN: EPOCH 1: BATCH 0050/0753: LOSS: 0.0314
+2024-03-08 18:04:43 - INFO - TRAIN: EPOCH 1: BATCH 0051/0753: LOSS: 0.0311
+2024-03-08 18:04:44 - INFO - TRAIN: EPOCH 1: BATCH 0052/0753: LOSS: 0.0307
+2024-03-08 18:04:45 - INFO - TRAIN: EPOCH 1: BATCH 0053/0753: LOSS: 0.0304
+2024-03-08 18:04:45 - INFO - TRAIN: EPOCH 1: BATCH 0054/0753: LOSS: 0.0301
+2024-03-08 18:04:46 - INFO - TRAIN: EPOCH 1: BATCH 0055/0753: LOSS: 0.0298
+2024-03-08 18:04:46 - INFO - TRAIN: EPOCH 1: BATCH 0056/0753: LOSS: 0.0294
+2024-03-08 18:04:47 - INFO - TRAIN: EPOCH 1: BATCH 0057/0753: LOSS: 0.0292
+2024-03-08 18:04:48 - INFO - TRAIN: EPOCH 1: BATCH 0058/0753: LOSS: 0.0290
+2024-03-08 18:04:48 - INFO - TRAIN: EPOCH 1: BATCH 0059/0753: LOSS: 0.0287
+2024-03-08 18:04:49 - INFO - TRAIN: EPOCH 1: BATCH 0060/0753: LOSS: 0.0284
+2024-03-08 18:04:50 - INFO - TRAIN: EPOCH 1: BATCH 0061/0753: LOSS: 0.0281
+2024-03-08 18:04:50 - INFO - TRAIN: EPOCH 1: BATCH 0062/0753: LOSS: 0.0278
+2024-03-08 18:04:51 - INFO - TRAIN: EPOCH 1: BATCH 0063/0753: LOSS: 0.0275
+2024-03-08 18:04:52 - INFO - TRAIN: EPOCH 1: BATCH 0064/0753: LOSS: 0.0273
+2024-03-08 18:04:52 - INFO - TRAIN: EPOCH 1: BATCH 0065/0753: LOSS: 0.0271
+2024-03-08 18:04:53 - INFO - TRAIN: EPOCH 1: BATCH 0066/0753: LOSS: 0.0268
+2024-03-08 18:04:54 - INFO - TRAIN: EPOCH 1: BATCH 0067/0753: LOSS: 0.0265
+2024-03-08 18:04:55 - INFO - TRAIN: EPOCH 1: BATCH 0068/0753: LOSS: 0.0263
+2024-03-08 18:04:55 - INFO - TRAIN: EPOCH 1: BATCH 0069/0753: LOSS: 0.0261
+2024-03-08 18:04:56 - INFO - TRAIN: EPOCH 1: BATCH 0070/0753: LOSS: 0.0259
+2024-03-08 18:04:57 - INFO - TRAIN: EPOCH 1: BATCH 0071/0753: LOSS: 0.0257
+2024-03-08 18:04:58 - INFO - TRAIN: EPOCH 1: BATCH 0072/0753: LOSS: 0.0255
+2024-03-08 18:04:58 - INFO - TRAIN: EPOCH 1: BATCH 0073/0753: LOSS: 0.0252
+2024-03-08 18:04:59 - INFO - TRAIN: EPOCH 1: BATCH 0074/0753: LOSS: 0.0250
+2024-03-08 18:05:00 - INFO - TRAIN: EPOCH 1: BATCH 0075/0753: LOSS: 0.0248
+2024-03-08 18:05:01 - INFO - TRAIN: EPOCH 1: BATCH 0076/0753: LOSS: 0.0245
+2024-03-08 18:05:01 - INFO - TRAIN: EPOCH 1: BATCH 0077/0753: LOSS: 0.0243
+2024-03-08 18:05:02 - INFO - TRAIN: EPOCH 1: BATCH 0078/0753: LOSS: 0.0242
+2024-03-08 18:05:03 - INFO - TRAIN: EPOCH 1: BATCH 0079/0753: LOSS: 0.0239
+2024-03-08 18:05:04 - INFO - TRAIN: EPOCH 1: BATCH 0080/0753: LOSS: 0.0237
+2024-03-08 18:05:04 - INFO - TRAIN: EPOCH 1: BATCH 0081/0753: LOSS: 0.0235
+2024-03-08 18:05:05 - INFO - TRAIN: EPOCH 1: BATCH 0082/0753: LOSS: 0.0233
+2024-03-08 18:05:06 - INFO - TRAIN: EPOCH 1: BATCH 0083/0753: LOSS: 0.0231
+2024-03-08 18:05:06 - INFO - TRAIN: EPOCH 1: BATCH 0084/0753: LOSS: 0.0229
+2024-03-08 18:05:07 - INFO - TRAIN: EPOCH 1: BATCH 0085/0753: LOSS: 0.0227
+2024-03-08 18:05:08 - INFO - TRAIN: EPOCH 1: BATCH 0086/0753: LOSS: 0.0225
+2024-03-08 18:05:09 - INFO - TRAIN: EPOCH 1: BATCH 0087/0753: LOSS: 0.0224
+2024-03-08 18:05:09 - INFO - TRAIN: EPOCH 1: BATCH 0088/0753: LOSS: 0.0222
+2024-03-08 18:05:10 - INFO - TRAIN: EPOCH 1: BATCH 0089/0753: LOSS: 0.0220
+2024-03-08 18:05:10 - ERROR - Traceback (most recent call last):
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+2024-03-08 18:05:10 - ERROR - return _run_code(code, main_globals, None,
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+2024-03-08 18:05:10 - ERROR - exec(code, run_globals)
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy\__main__.py", line 39, in <module>
+2024-03-08 18:05:10 - ERROR - cli.main()
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy/..\debugpy\server\cli.py", line 430, in main
+2024-03-08 18:05:10 - ERROR - run()
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy/..\debugpy\server\cli.py", line 284, in run_file
+2024-03-08 18:05:10 - ERROR - runpy.run_path(target, run_name="__main__")
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy\_vendored\pydevd\_pydevd_bundle\pydevd_runpy.py", line 321, in run_path
+2024-03-08 18:05:10 - ERROR - return _run_module_code(code, init_globals, run_name,
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy\_vendored\pydevd\_pydevd_bundle\pydevd_runpy.py", line 135, in _run_module_code
+2024-03-08 18:05:10 - ERROR - _run_code(code, mod_globals, init_globals,
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy\_vendored\pydevd\_pydevd_bundle\pydevd_runpy.py", line 124, in _run_code
+2024-03-08 18:05:10 - ERROR - exec(code, run_globals)
+2024-03-08 18:05:10 - ERROR -   File "C:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\main.py", line 112, in <module>
+2024-03-08 18:05:10 - ERROR - main()
+2024-03-08 18:05:10 - ERROR -   File "C:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\main.py", line 108, in main
+2024-03-08 18:05:10 - ERROR - TRAINER.train()
+2024-03-08 18:05:10 - ERROR -   File "C:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\train.py", line 135, in train
+2024-03-08 18:05:10 - ERROR - for batch, data in enumerate(loader_train, 1):
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+2024-03-08 18:05:10 - ERROR - data = self._next_data()
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\utils\data\dataloader.py", line 674, in _next_data
+2024-03-08 18:05:10 - ERROR - data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\utils\data\_utils\fetch.py", line 51, in fetch
+2024-03-08 18:05:10 - ERROR - data = [self.dataset[idx] for idx in possibly_batched_index]
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\utils\data\_utils\fetch.py", line 51, in <listcomp>
+2024-03-08 18:05:10 - ERROR - data = [self.dataset[idx] for idx in possibly_batched_index]
+2024-03-08 18:05:10 - ERROR -   File "C:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\dataset.py", line 157, in __getitem__
+2024-03-08 18:05:10 - ERROR - input_slices, target_slice = self.transform((input_slices, target_slice))
+2024-03-08 18:05:10 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torchvision\transforms\transforms.py", line 95, in __call__
+2024-03-08 18:05:10 - ERROR - img = t(img)
+2024-03-08 18:05:10 - ERROR -   File "C:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\transforms.py", line 488, in __call__
+2024-03-08 18:05:10 - ERROR - return input_normalized.astype(np.float32), target_normalized.astype(np.float32)
+2024-03-08 18:05:10 - ERROR - KeyboardInterrupt
