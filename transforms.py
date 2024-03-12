@@ -675,3 +675,103 @@ class BackTo01Range(object):
 
         return normalized_tensor
 
+
+
+class LogScale(object):
+    """
+    Log scale and normalize images to the 0-1 range using a shift value provided at initialization,
+    ensuring all values are positive before log scaling. Normalization is then based on the logarithm
+    of the global minimum and maximum values of the dataset.
+    """
+
+    def __init__(self, dataset_min, dataset_max, shift_value=1e-10):
+        """
+        Initializes the normalizer with a shift value.
+
+        Parameters:
+        - shift_value (float): The value added to each element to ensure it is greater than 0 before applying log scale.
+        """
+        self.shift_value = shift_value
+        self.min = dataset_min
+        self.max = dataset_max
+
+    def __call__(self, data):
+        """
+        Apply log scale and normalization to input and target images based on the log of the global min and max.
+
+        Args:
+            data (tuple): Containing input and target images to be normalized.
+            dataset_min (float): The minimum value in the dataset used for normalization.
+            dataset_max (float): The maximum value in the dataset used for normalization.
+
+        Returns:
+            Tuple: Log scaled and normalized input and target images.
+        """
+        input_img, target_img = data
+
+        # Ensure dataset_min and dataset_max are positive and greater than shift_value
+        adjusted_min = np.log(self.min + self.shift_value)
+        adjusted_max = np.log(self.max + self.shift_value)
+
+        # Shift and log scale input image, then normalize based on adjusted global min and max
+        input_shifted = input_img + self.shift_value
+        input_log_scaled = np.log(input_shifted)
+        input_normalized = (input_log_scaled - adjusted_min) / (adjusted_max - adjusted_min)
+        input_normalized = np.clip(input_normalized, 0, 1)
+
+        # Shift and log scale target image, then normalize based on adjusted global min and max
+        target_shifted = target_img + self.shift_value
+        target_log_scaled = np.log(target_shifted)
+        target_normalized = (target_log_scaled - adjusted_min) / (adjusted_max - adjusted_min)
+        target_normalized = np.clip(target_normalized, 0, 1)
+
+        return input_normalized.astype(np.float32), target_normalized.astype(np.float32)
+
+
+
+class InverseLogScale(object):
+    """
+    Inverse log scale and then normalize images back to the 0-1 range using the global minimum and maximum values provided at initialization. 
+    This class inversely normalizes a single tensor from the normalized 0-1 range back to its original scale, and then normalizes it to 0-1 range again.
+    """
+
+    def __init__(self, dataset_min, dataset_max, shift_value=1e-10):
+        """
+        Initializes the inverse normalizer with the global minimum and maximum values of the dataset,
+        along with a shift value to ensure positiveness before applying the inverse log scale.
+
+        Parameters:
+        - dataset_min (float): The minimum value in the original dataset.
+        - dataset_max (float): The maximum value in the original dataset.
+        - shift_value (float): The value added to ensure all values are positive before applying inverse log scale.
+        """
+        self.dataset_min = dataset_min
+        self.dataset_max = dataset_max
+        self.shift_value = shift_value
+
+    def __call__(self, tensor):
+        """
+        Apply inverse log scaling and normalization to a single tensor.
+
+        Args:
+            tensor (torch.Tensor): The normalized tensor to be inversely log scaled and normalized.
+
+        Returns:
+            torch.Tensor: The tensor inversely log scaled and normalized back to the 0-1 range.
+        """
+        # Calculate adjusted min and max for log scaling
+        adjusted_min = torch.log(torch.tensor(self.dataset_min + self.shift_value, dtype=torch.float32))
+        adjusted_max = torch.log(torch.tensor(self.dataset_max + self.shift_value, dtype=torch.float32))
+
+        # Transform from 0-1 normalized range back to log scale based on adjusted min and max
+        tensor_log_scaled = tensor * (adjusted_max - adjusted_min) + adjusted_min
+
+        # Apply exponential to inverse log scale
+        tensor_exp = torch.exp(tensor_log_scaled) - self.shift_value
+
+        # Normalize back to the 0-1 range using the original dataset min and max
+        tensor_normalized = (tensor_exp - self.dataset_min) / (self.dataset_max - self.dataset_min)
+        tensor_normalized = torch.clamp(tensor_normalized, 0, 1)  # Ensure the values are within [0, 1]
+
+        return tensor_normalized
+

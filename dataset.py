@@ -127,7 +127,7 @@ class N2N4InputSliceDataset2(torch.utils.data.Dataset):
         pairs = []
         cumulative_slices = [0]
         for subdir, _, files in os.walk(root_folder_path):
-            sorted_files = sorted([f for f in files if f.lower().endswith('.tiff')])
+            sorted_files = sorted([f for f in files if f.lower().endswith(('.tiff', '.tif'))])
             for f in sorted_files:
                 full_path = os.path.join(subdir, f)
                 volume = tifffile.imread(full_path)
@@ -170,7 +170,7 @@ class N2N4InputSliceInferenceDataset(torch.utils.data.Dataset):
     def get_file_list_by_folder(self, root_folder_path):
         file_list_by_folder = {}
         for subdir, _, files in os.walk(root_folder_path):
-            sorted_files = sorted([f for f in files if f.lower().endswith('.tiff')])
+            sorted_files = sorted([f for f in files if f.lower().endswith(('.tiff', '.tif'))])
             file_paths = [os.path.join(subdir, f) for f in sorted_files]
             if file_paths:
                 file_list_by_folder[subdir] = file_paths
@@ -276,7 +276,7 @@ class N2NInferenceDataset(torch.utils.data.Dataset):
     def get_file_list(self, root_folder_path):
         file_list = []
         for subdir, _, files in os.walk(root_folder_path):
-            sorted_files = sorted([f for f in files if f.lower().endswith('.tiff')])
+            sorted_files = sorted([f for f in files if f.lower().endswith(('.tiff', '.tif'))])
             file_paths = [os.path.join(subdir, f) for f in sorted_files]
             file_list.extend(file_paths)
         return file_list

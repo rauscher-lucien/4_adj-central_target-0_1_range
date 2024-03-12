@@ -30,11 +30,11 @@ def main():
 
     #********************************************************#
 
-    project_dir = os.path.join('Z:\\', 'members', 'Rauscher', 'projects', '4_adj-central_target-0_1_range')
-    # project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
-    data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'test_data_2')
-    name = 'test_data_2-test-1'
-    inference_name = 'inference_150'
+    # project_dir = os.path.join('Z:\\', 'members', 'Rauscher', 'projects', '4_adj-central_target-0_1_range')
+    project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
+    data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'big_data_small', 'OCT-data-1')
+    name = 'test-log_scale-1'
+    inference_name = 'inference_150-mouse_embryo'
     load_epoch = 150
 
 
@@ -48,8 +48,8 @@ def main():
     os.makedirs(inference_folder, exist_ok=True)
     
     ## Load image stack for inference
-    filenames = glob.glob(os.path.join(data_dir, "*.TIFF"))
-    print("Following file will be denoised:  ", filenames[0])
+    # filenames = glob.glob(os.path.join(data_dir, "*.TIFF"))
+    # print("Following file will be denoised:  ", filenames[0])
 
 
 
@@ -61,7 +61,7 @@ def main():
         print("\nCPU will be used.")
         device = torch.device("cpu")
 
-    min, max = load_min_max_params(data_dir=data_dir)
+    min, max = load_min_max_params(dir=checkpoints_dir)
     # mean, std = load_normalization_params(data_dir=data_dir)
     
     inf_transform = transforms.Compose([
@@ -121,7 +121,8 @@ def main():
     
     # Stack and save output images
     output_stack = np.stack(output_images_clipped, axis=0)
-    tifffile.imwrite(os.path.join(inference_folder, 'output_stack.TIFF'), output_stack)
+    filename = f'output_stack-{name}-{inference_name}.TIFF'
+    tifffile.imwrite(os.path.join(inference_folder, filename), output_stack)
 
     print("TIFF stacks created successfully.")
 
@@ -129,44 +130,4 @@ if __name__ == '__main__':
     main()
 
 
-
-#     print("starting inference")
-#     with torch.no_grad():
-
-#         netG.eval()
-
-#         for batch, data in enumerate(inf_loader):
-
-#             input_img = data[0].to(device)
-#             output_img = netG(input_img)
-
-#             input_img = inv_inf_transform(input_img)[..., 0]
-#             output_img = inv_inf_transform(output_img)[..., 0]
-
-#             # input_img = np.clip(input_img, 0, 1)
-#             # output_img = np.clip(output_img, 0, 1)
-
-#             for j in range(0, batch_size):
-#                 name1 = batch
-#                 name2 = j
-#                 fileset = {'name': name,
-#                             'input': "%04d-%04d-input.png" % (name1, name2),
-#                             'output': "%04d-%04d-output.png" % (name1, name2),
-#                             'target': "%04d-%04d-label.png" % (name1, name2)}
-
-#                 input_img_1 = np.squeeze(input_img[j, :, :])
-#                 output_img_1 = np.squeeze(output_img[j, :, :])
-
-#                 input_img_1 = (input_img_1 * 255).astype(np.uint8)
-#                 output_img_1 = (output_img_1 * 255).astype(np.uint8)
-
-#                 input_img_path = os.path.join(inference_folder, fileset['input'])
-#                 output_img_path = os.path.join(inference_folder, fileset['output'])
-
-#                 # Image.fromarray(input_img_1).save(input_img_path)
-#                 Image.fromarray(output_img_1).save(output_img_path)
-
-
-# if __name__ == '__main__':
-#     main()
 

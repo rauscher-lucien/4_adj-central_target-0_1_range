@@ -56,7 +56,7 @@ class Trainer:
 
     def load(self, dir_chck, net, epoch, optimG=[]):
 
-        dict_net = torch.load('%s/model_epoch%04d.pth' % (dir_chck, epoch))
+        dict_net = torch.load('%s/model_epoch%04d.pth' % (dir_chck, epoch), map_location=torch.device(self.device))
 
         print('Loaded %dth network' % epoch)
 
@@ -79,14 +79,13 @@ class Trainer:
         print(f"Execution time: {execution_time} seconds")
 
         transform_train = transforms.Compose([
-            MinMaxNormalize(min, max),
+            LogScale(min, max),
             RandomCrop(output_size=(128,128)),
             RandomHorizontalFlip(),
             ToTensor()
         ])
 
         transform_inv_train = transforms.Compose([
-            BackTo01Range(),
             ToNumpy()
         ])
 
@@ -175,9 +174,9 @@ class Trainer:
                     output_img = transform_inv_train(output_img)[..., 0]  # Same assumption as target_img
 
                     # Normalize images
-                    input_imgs = np.clip(input_imgs, 0, 1)
-                    target_img = np.clip(target_img, 0, 1)
-                    output_img = np.clip(output_img, 0, 1)
+                    # input_imgs = np.clip(input_imgs, 0, 1)
+                    # target_img = np.clip(target_img, 0, 1)
+                    # output_img = np.clip(output_img, 0, 1)
 
                     # plot_intensity_distribution(output_img)
 

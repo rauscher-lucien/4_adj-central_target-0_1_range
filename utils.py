@@ -155,7 +155,7 @@ def load_normalization_params(data_dir):
 
 
 
-def load_min_max_params(data_dir):
+def load_min_max_params(dir):
     """
     Loads the global minimum and maximum values from a pickle file located in the specified data directory.
 
@@ -166,7 +166,7 @@ def load_min_max_params(data_dir):
     - A tuple containing the global minimum and maximum values.
     """
     # Construct the path to the pickle file
-    load_path = os.path.join(data_dir, 'min_max_params.pkl')
+    load_path = os.path.join(dir, 'min_max_params.pkl')
     
     # Load the parameters from the pickle file
     with open(load_path, 'rb') as f:

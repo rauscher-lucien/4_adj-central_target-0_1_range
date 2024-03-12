@@ -91,7 +91,7 @@ class NewUNet(nn.Module):
         #tensor_to_image(x0, 'image11.png')
         x = self.outconv(x0)
         #tensor_to_image(x, 'image12.png')
-        return torch.sigmoid(x)
+        return x
 
     @staticmethod
     def weight_init(m):
