@@ -59,9 +59,7 @@ class NewUNet(nn.Module):
         self.down0 = DownBlock(in_ch=in_ch, out_ch=self.base)
         self.down1 = DownBlock(in_ch=self.base, out_ch=2*self.base)
         self.down2 = DownBlock(in_ch=2*self.base, out_ch=4*self.base)
-        self.down3 = DownBlock(in_ch=4*self.base, out_ch=8*self.base)
-        self.conv = ConvBlock(in_ch=8*self.base, out_ch=8*self.base)
-        self.up4 = UpBlock(in_ch=8*self.base, out_ch=4*self.base)
+        self.conv = ConvBlock(in_ch=4*self.base, out_ch=4*self.base)
         self.up3 = UpBlock(in_ch=4*self.base, out_ch=2*self.base)
         self.up2 = UpBlock(in_ch=2*self.base, out_ch=self.base)
         self.up1 = UpBlock(in_ch=self.base, out_ch=self.base)
@@ -101,27 +99,47 @@ class NewUNet(nn.Module):
 
 
 class DoubleNet(nn.Module):
-    def __init__(self, mean, std, shift_value=1e-10):
+    def __init__(self, mean, std, device, shift_value=1e-10):
         super(DoubleNet, self).__init__()
 
-        self.mean = mean
-        self.std = std
-        self.shift_value = shift_value
+        self.mean = torch.tensor(mean, dtype=torch.float, device=device)
+        self.std = torch.tensor(std, dtype=torch.float, device=device)
+        self.shift_value = torch.tensor(shift_value, dtype=torch.float, device=device)
 
         self.net_1 = NewUNet(in_ch=4, out_ch=4)
         self.net_2 = NewUNet(in_ch=4, out_ch=1)
 
     def forward(self,x):
 
+        #plot_intensity_distribution(x, '1')
+
         x = x + self.shift_value
-        x = np.log(x)
-        x = (x - np.log(self.mean)) / np.log(self.std)
+        x = torch.log(x)
+        #plot_intensity_distribution(x, '2')
+
+        x = (x - torch.log(self.mean)) / torch.log(self.std)
+        self.original_mean = x.mean()
+        self.original_std = x.std()
+        #plot_intensity_distribution(x, '3')
 
         x = self.net_1(x)
+        #plot_intensity_distribution(x, '4')
 
-        x = x * np.log(self.std) + np.log(self.mean)
-        x = np.exp(x) - self.shift_value
+        x_mean = x.mean()
+        x_std = x.std()
+        x = (x - x_mean) / x_std * self.original_std + self.original_mean
+        #plot_intensity_distribution(x, '5')
+
+        x = x * torch.log(self.std) + torch.log(self.mean)
+        #plot_intensity_distribution(x, '6')
+
+        x = torch.exp(x) - self.shift_value
+        #plot_intensity_distribution(x, '7')
+
+        x = (x - self.mean) / self.std
+        #plot_intensity_distribution(x, '8')
 
         x = self.net_2(x)
+        #plot_intensity_distribution(x, '9')
 
         return x

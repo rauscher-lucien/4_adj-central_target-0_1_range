@@ -33,9 +33,9 @@ def main():
     # project_dir = os.path.join('Z:\\', 'members', 'Rauscher', 'projects', '4_adj-central_target-0_1_range')
     project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
     data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'big_data_small', 'good_sample-unidentified')
-    name = 'test-z-1'
-    inference_name = 'inference_150-good_sample-unidentified'
-    load_epoch = 16
+    name = 'test-log-double_net-2'
+    inference_name = 'inference_70-good_sample-unidentified'
+    load_epoch = 70
 
 
     #********************************************************#
@@ -61,11 +61,10 @@ def main():
         print("\nCPU will be used.")
         device = torch.device("cpu")
 
-    min, max = load_min_max_params(dir=checkpoints_dir)
-    mean, std = load_normalization_params(data_dir=data_dir)
+    #min, max = load_min_max_params(dir=checkpoints_dir)
+    mean, std = load_normalization_params(data_dir=checkpoints_dir)
     
     inf_transform = transforms.Compose([
-        NormalizeInference(mean, std),
         CropToMultipleOf32Inference(),
         ToTensor(),
     ])
@@ -90,11 +89,10 @@ def main():
     )
 
     
-    netG = NewUNet()
-    # init_net(netG, init_type='normal', init_gain=0.02, gpu_ids=0)
-    paramsG = netG.parameters()
-    optimG = torch.optim.Adam(paramsG, lr=1e-3, betas=(0.5, 0.999))
-    netG, optimG, st_epoch = load(checkpoints_dir, netG, load_epoch, optimG)
+    net = DoubleNet(mean, std, device).to(device)
+    params = net.parameters()
+    optim = torch.optim.Adam(params, lr=1e-3, betas=(0.5, 0.999))
+    net, optim, st_epoch = load(checkpoints_dir, net, load_epoch, optim)
 
     num_inf = len(inf_dataset)
     num_batch = int((num_inf / batch_size) + ((num_inf % batch_size) != 0))
@@ -103,13 +101,15 @@ def main():
     output_images = []  # List to collect output images
 
     with torch.no_grad():
-        netG.eval()
+        net.eval()
 
         for batch, data in enumerate(inf_loader):
             input_img = data.to(device)  # Assuming data is already a tensor of the right shape
 
-            output_img = netG(input_img)
+            output_img = net(input_img)
+            #plot_intensity_distribution(output_img, '1')
             output_img_np = inv_inf_transform(output_img)  # Convert output tensors to numpy format for saving
+            #plot_intensity_distribution(output_img_np, '2')
 
             for img in output_img_np:
                 output_images.append(img)

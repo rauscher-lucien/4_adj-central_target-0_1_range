@@ -178,19 +178,21 @@ def load_min_max_params(dir):
     return global_min, global_max
 
 
-def plot_intensity_distribution(image_array, block_execution=True):
+def plot_intensity_distribution(image_array, title='1', block_execution=True):
     """
     Plots the intensity distribution and controls execution flow based on 'block_execution'.
     """
     # Check if the input is a PyTorch tensor and convert it to a NumPy array if so
     if isinstance(image_array, torch.Tensor):
         # Ensure it's on the CPU and convert to NumPy
-        image_array = image_array.cpu().numpy()
+        image_array = image_array.detach().numpy()
+
+    print(np.max(image_array))
 
     # Create a new figure for each plot to avoid conflicts
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.hist(image_array.flatten(), bins=50, color='blue', alpha=0.7)
-    ax.set_title('Intensity Distribution')
+    ax.set_title('Intensity Distribution '+ title)
     ax.set_xlabel('Intensity Value')
     ax.set_ylabel('Frequency')
     ax.grid(True, which='both', linestyle='--', linewidth=0.5)

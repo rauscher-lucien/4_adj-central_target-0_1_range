@@ -80,7 +80,6 @@ class Trainer:
         print(f"Execution time: {execution_time} seconds")
 
         transform_train = transforms.Compose([
-            Normalize(mean, std),
             RandomCrop(output_size=(128,128)),
             RandomHorizontalFlip(),
             ToTensor()
@@ -108,7 +107,7 @@ class Trainer:
 
         ### initialize network ###
 
-        net = DoubleNet(mean, std).to(self.device)
+        net = DoubleNet(mean, std, self.device).to(self.device)
 
         N2N_loss = nn.MSELoss().to(self.device)
 
@@ -140,6 +139,8 @@ class Trainer:
 
                 input_stack = input_stack.to(self.device)
                 target_img = target_img.to(self.device)
+                target_img = (target_img - mean) / std
+                #plot_intensity_distribution(target_img, '0')
 
                 output_img = net(input_stack)
 
@@ -174,7 +175,7 @@ class Trainer:
                     # target_img = np.clip(target_img, 0, 1)
                     # output_img = np.clip(output_img, 0, 1)
 
-                    #plot_intensity_distribution(output_img)
+                    #plot_intensity_distribution(output_img, '1')
 
                     for j in range(1): # range(target_img.shape[0]):
                         # Save each input image in the stack
