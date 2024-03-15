@@ -12472,3 +12472,63 @@
 2024-03-15 11:47:24 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nn\modules\conv.py", line 456, in _conv_forward
 2024-03-15 11:47:24 - ERROR - return F.conv2d(input, weight, bias, self.stride,
 2024-03-15 11:47:24 - ERROR - KeyboardInterrupt
+2024-03-15 12:13:46 - ERROR - Traceback (most recent call last):
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+2024-03-15 12:13:46 - ERROR - return _run_code(code, main_globals, None,
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+2024-03-15 12:13:46 - ERROR - exec(code, run_globals)
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy\__main__.py", line 39, in <module>
+2024-03-15 12:13:46 - ERROR - cli.main()
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy/..\debugpy\server\cli.py", line 430, in main
+2024-03-15 12:13:46 - ERROR - run()
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy/..\debugpy\server\cli.py", line 284, in run_file
+2024-03-15 12:13:46 - ERROR - runpy.run_path(target, run_name="__main__")
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy\_vendored\pydevd\_pydevd_bundle\pydevd_runpy.py", line 321, in run_path
+2024-03-15 12:13:46 - ERROR - return _run_module_code(code, init_globals, run_name,
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy\_vendored\pydevd\_pydevd_bundle\pydevd_runpy.py", line 135, in _run_module_code
+2024-03-15 12:13:46 - ERROR - _run_code(code, mod_globals, init_globals,
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\.vscode\extensions\ms-python.debugpy-2024.2.0-win32-x64\bundled\libs\debugpy\_vendored\pydevd\_pydevd_bundle\pydevd_runpy.py", line 124, in _run_code
+2024-03-15 12:13:46 - ERROR - exec(code, run_globals)
+2024-03-15 12:13:46 - ERROR -   File "C:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\main.py", line 43, in <module>
+2024-03-15 12:13:46 - ERROR - from utils import *
+2024-03-15 12:13:46 - ERROR -   File "C:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\utils.py", line 6, in <module>
+2024-03-15 12:13:46 - ERROR - import torch
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\__init__.py", line 1474, in <module>
+2024-03-15 12:13:46 - ERROR - from torch import quantization as quantization
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\quantization\__init__.py", line 1, in <module>
+2024-03-15 12:13:46 - ERROR - from .quantize import *  # noqa: F403
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\quantization\quantize.py", line 10, in <module>
+2024-03-15 12:13:46 - ERROR - from torch.ao.quantization.quantize import (
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\ao\quantization\__init__.py", line 3, in <module>
+2024-03-15 12:13:46 - ERROR - from .fake_quantize import *  # noqa: F403
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\ao\quantization\fake_quantize.py", line 8, in <module>
+2024-03-15 12:13:46 - ERROR - from torch.ao.quantization.observer import (
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\ao\quantization\observer.py", line 15, in <module>
+2024-03-15 12:13:46 - ERROR - from torch.ao.quantization.utils import (
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\ao\quantization\utils.py", line 12, in <module>
+2024-03-15 12:13:46 - ERROR - from torch.fx import Node
+2024-03-15 12:13:46 - ERROR -   File "c:\Users\rausc\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\fx\__init__.py", line 84, in <module>
+2024-03-15 12:13:46 - ERROR - from ._symbolic_trace import symbolic_trace, Tracer, wrap, PH, ProxyableClassMeta
+2024-03-15 12:13:46 - ERROR -   File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+2024-03-15 12:13:46 - ERROR -   File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+2024-03-15 12:13:46 - ERROR -   File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+2024-03-15 12:13:46 - ERROR -   File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+2024-03-15 12:13:46 - ERROR -   File "<frozen importlib._bootstrap_external>", line 1012, in get_code
+2024-03-15 12:13:46 - ERROR -   File "<frozen importlib._bootstrap_external>", line 672, in _compile_bytecode
+2024-03-15 12:13:46 - ERROR - KeyboardInterrupt
+2024-03-15 12:14:10 - INFO - Not running on server, using default data directory: C:\Users\rausc\Documents\EMBL\data\big_data_small\good_sample-unidentified
+2024-03-15 12:14:10 - INFO - Default project name: test-log-double_net-1
+2024-03-15 12:14:10 - INFO - GPU is not available
+2024-03-15 12:14:10 - INFO - C:\Users\rausc\Documents\EMBL\data\big_data_small\good_sample-unidentified
+2024-03-15 12:14:10 - INFO - Global mean and std parameters saved to C:\Users\rausc\Documents\EMBL\projects\4_adj-central_target-0_1_range\test-log-double_net-1\checkpoints\normalization_params.pkl
+2024-03-15 12:14:10 - INFO - Execution time: 0.1068716049194336 seconds
+2024-03-15 12:14:11 - INFO - Backend TkAgg is interactive backend. Turning interactive mode on.
+2024-03-15 12:24:45 - INFO - Not running on server, using default data directory: C:\Users\rausc\Documents\EMBL\data\big_data_small\good_sample-unidentified
+2024-03-15 12:24:45 - INFO - Default project name: test-log-double_net-1
+2024-03-15 12:24:45 - INFO - GPU is not available
+2024-03-15 12:24:45 - INFO - C:\Users\rausc\Documents\EMBL\data\big_data_small\good_sample-unidentified
+2024-03-15 12:24:45 - INFO - Global mean and std parameters saved to C:\Users\rausc\Documents\EMBL\projects\4_adj-central_target-0_1_range\test-log-double_net-1\checkpoints\normalization_params.pkl
+2024-03-15 12:24:45 - INFO - Execution time: 0.08670353889465332 seconds
+2024-03-15 12:24:45 - ERROR - C:\Users\rausc\Documents\EMBL\code\4_adj-central_target-0_1_range\model.py:117: RuntimeWarning: invalid value encountered in log
+2024-03-15 12:24:45 - ERROR -   x = np.log(x)
+2024-03-15 12:24:46 - INFO - Backend TkAgg is interactive backend. Turning interactive mode on.

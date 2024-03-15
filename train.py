@@ -36,6 +36,7 @@ class Trainer:
         self.train_continue = data_dict['train_continue']
         self.load_epoch = data_dict['load_epoch']
 
+
         # check if we have a gpu
         if torch.cuda.is_available():
             print("GPU is available")
@@ -79,7 +80,7 @@ class Trainer:
         print(f"Execution time: {execution_time} seconds")
 
         transform_train = transforms.Compose([
-            LogScaleZScoreNormalize(mean, std),
+            Normalize(mean, std),
             RandomCrop(output_size=(128,128)),
             RandomHorizontalFlip(),
             ToTensor()
@@ -107,11 +108,7 @@ class Trainer:
 
         ### initialize network ###
 
-        net = NewUNet().to(self.device)
-        # net = UNet(nch_in=1, nch_out=1)
-
-        # init_weights(net, init_type='kaiming', init_gain=1e-20)
-        # init_weights(net, init_type='normal', init_gain=0.02)
+        net = DoubleNet(mean, std).to(self.device)
 
         N2N_loss = nn.MSELoss().to(self.device)
 
@@ -141,12 +138,9 @@ class Trainer:
                 # Squeeze the unnecessary outer batch dimension
                 input_stack, target_img = data
 
-                #plot_intensity_distribution(input_stack)
-
                 input_stack = input_stack.to(self.device)
                 target_img = target_img.to(self.device)
 
-                # Forward pass: compute the network output on input_img
                 output_img = net(input_stack)
 
                 # Reset gradients for the current batch

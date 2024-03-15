@@ -77,8 +77,8 @@ def main():
     else:
 
         data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'big_data_small', 'good_sample-unidentified')
-        project_name = 'test-log-z-1'
-        train_continue = 'on'
+        project_name = 'test-log-double_net-1'
+        train_continue = 'off'
         load_epoch = 34
         project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
         
