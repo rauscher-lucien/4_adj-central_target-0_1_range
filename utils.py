@@ -64,7 +64,7 @@ def normalize_dataset(dataset):
     return normalized_dataset
 
 
-def compute_global_mean_and_std(dataset_path):
+def compute_global_mean_and_std(dataset_path, checkpoints_path):
     """
     Computes and saves the global mean and standard deviation across all TIFF stacks
     in the given directory and its subdirectories, saving the results in the same directory.
@@ -86,7 +86,7 @@ def compute_global_mean_and_std(dataset_path):
     global_std = np.mean(all_stds)
     
     # Define the save_path in the same directory as the dataset
-    save_path = os.path.join(dataset_path, 'normalization_params.pkl')
+    save_path = os.path.join(checkpoints_path, 'normalization_params.pkl')
 
     # Save the computed global mean and standard deviation to a file
     with open(save_path, 'wb') as f:
@@ -178,12 +178,15 @@ def load_min_max_params(dir):
     return global_min, global_max
 
 
-
-
 def plot_intensity_distribution(image_array, block_execution=True):
     """
     Plots the intensity distribution and controls execution flow based on 'block_execution'.
     """
+    # Check if the input is a PyTorch tensor and convert it to a NumPy array if so
+    if isinstance(image_array, torch.Tensor):
+        # Ensure it's on the CPU and convert to NumPy
+        image_array = image_array.cpu().numpy()
+
     # Create a new figure for each plot to avoid conflicts
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.hist(image_array.flatten(), bins=50, color='blue', alpha=0.7)
@@ -194,10 +197,13 @@ def plot_intensity_distribution(image_array, block_execution=True):
     
     if block_execution:
         plt.show()
+        plt.pause(1)
+        plt.close(fig)
     else:
         plt.draw()
         plt.pause(1)  # Allows GUI to update
         plt.close(fig)  # Close the new figure explicitly
+
 
 
 def get_file_path(local_path, remote_path):

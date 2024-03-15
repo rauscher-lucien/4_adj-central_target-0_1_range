@@ -80,7 +80,7 @@ class NewUNet(nn.Module):
         x3_a, x3_b = self.down3(x2_b)
         #tensor_to_image(x3_b, 'image4.png')
         x4 = self.conv(x3_b)
-        #tensor_to_image(x5, 'image6.png')
+        #tensor_to_image(x4, 'image6.png')
         x3 = self.up4(x4, x3_a)
         #tensor_to_image(x3, 'image8.png')
         x2 = self.up3(x3, x2_a)

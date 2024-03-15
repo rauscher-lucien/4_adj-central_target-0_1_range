@@ -32,10 +32,10 @@ def main():
 
     # project_dir = os.path.join('Z:\\', 'members', 'Rauscher', 'projects', '4_adj-central_target-0_1_range')
     project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
-    data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'big_data_small', 'OCT-data-1')
-    name = 'test-log_scale-1'
-    inference_name = 'inference_150-mouse_embryo'
-    load_epoch = 150
+    data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'big_data_small', 'good_sample-unidentified')
+    name = 'test-z-1'
+    inference_name = 'inference_150-good_sample-unidentified'
+    load_epoch = 16
 
 
     #********************************************************#
@@ -62,10 +62,10 @@ def main():
         device = torch.device("cpu")
 
     min, max = load_min_max_params(dir=checkpoints_dir)
-    # mean, std = load_normalization_params(data_dir=data_dir)
+    mean, std = load_normalization_params(data_dir=data_dir)
     
     inf_transform = transforms.Compose([
-        MinMaxNormalizeInference(min, max),
+        NormalizeInference(mean, std),
         CropToMultipleOf32Inference(),
         ToTensor(),
     ])
