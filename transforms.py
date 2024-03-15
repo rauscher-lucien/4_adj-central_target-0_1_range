@@ -676,8 +676,7 @@ class BackTo01Range(object):
         return normalized_tensor
 
 
-
-class LogScale(object):
+class LogScaleMinMaxNormalize(object):
     """
     Log scale and normalize images to the 0-1 range using a shift value provided at initialization,
     ensuring all values are positive before log scaling. Normalization is then based on the logarithm
@@ -728,8 +727,57 @@ class LogScale(object):
         return input_normalized.astype(np.float32), target_normalized.astype(np.float32)
 
 
+class LogScaleZScoreNormalize(object):
+    """
+    Log scale and Z-score normalize images. This class applies a log transformation to ensure all values are positive 
+    before log scaling. Z-score normalization is then based on the mean and standard deviation of the log-transformed data.
+    """
 
-class InverseLogScale(object):
+    def __init__(self, dataset_mean, dataset_std, shift_value=1e-10):
+        """
+        Initializes the normalizer with the mean and standard deviation of the log-transformed dataset and a shift value.
+
+        Parameters:
+        - shift_value (float): The value added to each element to ensure it is greater than 0 before applying log scale.
+        - dataset_mean (float): The mean value of the log-transformed dataset.
+        - dataset_std (float): The standard deviation of the log-transformed dataset.
+        """
+        self.shift_value = shift_value
+        self.log_mean = np.log(dataset_mean)
+        self.log_std = np.log(dataset_std)
+
+    def __call__(self, data):
+        """
+        Apply log scale and Z-score normalization to input and target images.
+
+        Args:
+            data (tuple): Containing input and target images to be normalized.
+
+        Returns:
+            Tuple: Log scaled and Z-score normalized input and target images.
+        """
+        input_img, target_img = data
+
+        # Shift and log scale input image
+        input_shifted = input_img + self.shift_value
+        input_log_scaled = np.log(input_shifted)
+
+        # Z-score normalize the log-scaled input image
+        input_normalized = (input_log_scaled - self.log_mean) / self.log_std
+
+        # Shift and log scale target image
+        target_shifted = target_img + self.shift_value
+        target_log_scaled = np.log(target_shifted)
+
+        # Z-score normalize the log-scaled target image
+        target_normalized = (target_log_scaled - self.log_mean) / self.log_std
+
+        return input_normalized.astype(np.float32), target_normalized.astype(np.float32)
+
+
+
+
+class InverseLogScaleMinMax(object):
     """
     Inverse log scale and then normalize images back to the 0-1 range using the global minimum and maximum values provided at initialization. 
     This class inversely normalizes a single tensor from the normalized 0-1 range back to its original scale, and then normalizes it to 0-1 range again.
@@ -774,4 +822,94 @@ class InverseLogScale(object):
         tensor_normalized = torch.clamp(tensor_normalized, 0, 1)  # Ensure the values are within [0, 1]
 
         return tensor_normalized
+    
 
+
+class InverseLogScaleZScore(object):
+    """
+    Inversely Z-score normalize and then reverse log scale images using the mean and standard deviation provided at initialization.
+    This class reverses the Z-score normalization by using the mean and standard deviation of the log-transformed data and then applies
+    the exponential function to reverse the log transformation.
+    """
+
+    def __init__(self, dataset_mean, dataset_std, shift_value=1e-10):
+        """
+        Initializes the inverse normalizer with the mean and standard deviation of the log-transformed dataset,
+        along with a shift value used during the forward log scaling.
+
+        Parameters:
+        - dataset_mean (float): The mean value of the log-transformed dataset.
+        - dataset_std (float): The standard deviation of the log-transformed dataset.
+        - shift_value (float): The value added to ensure all values are positive before applying log scale.
+        """
+
+        self.shift_value = shift_value
+        self.log_mean = np.log(dataset_mean)
+        self.log_std = np.log(dataset_std)
+
+    def __call__(self, array):
+        """
+        Apply inverse Z-score normalization and reverse log scaling to a single tensor.
+
+        Args:
+            tensor (np.ndarray): The Z-score normalized and log scaled tensor to be inversely transformed.
+
+        Returns:
+            np.ndarray: The tensor after reversing the Z-score normalization and log scaling.
+        """
+
+        #plot_intensity_distribution(array)
+        # Reverse Z-score normalization
+        array_reversed_zscore = array * self.log_std + self.log_mean
+
+        #plot_intensity_distribution(array_reversed_zscore)
+
+        # Apply exponential to reverse log scale
+        array_reversed_log = np.exp(array_reversed_zscore) - self.shift_value
+
+        #plot_intensity_distribution(array_reversed_log)
+
+        return array_reversed_log
+
+
+
+class LogScaleZScoreNormalizeInference(object):
+    """
+    Log scale and Z-score normalize images. This class applies a log transformation to ensure all values are positive 
+    before log scaling. Z-score normalization is then based on the mean and standard deviation of the log-transformed data.
+    """
+
+    def __init__(self, dataset_mean, dataset_std, shift_value=1e-10):
+        """
+        Initializes the normalizer with the mean and standard deviation of the log-transformed dataset and a shift value.
+
+        Parameters:
+        - shift_value (float): The value added to each element to ensure it is greater than 0 before applying log scale.
+        - dataset_mean (float): The mean value of the log-transformed dataset.
+        - dataset_std (float): The standard deviation of the log-transformed dataset.
+        """
+        self.shift_value = shift_value
+        self.log_mean = np.log(dataset_mean)
+        self.log_std = np.log(dataset_std)
+
+    def __call__(self, data):
+        """
+        Apply log scale and Z-score normalization to input and target images.
+
+        Args:
+            data (tuple): Containing input and target images to be normalized.
+
+        Returns:
+            Tuple: Log scaled and Z-score normalized input and target images.
+        """
+        input_img = data
+
+        # Shift and log scale input image
+        input_shifted = input_img + self.shift_value
+        input_log_scaled = np.log(input_shifted)
+
+        # Z-score normalize the log-scaled input image
+        input_normalized = (input_log_scaled - self.log_mean) / self.log_std
+
+
+        return input_normalized.astype(np.float32)

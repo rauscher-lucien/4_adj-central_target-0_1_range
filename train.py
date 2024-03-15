@@ -72,14 +72,14 @@ class Trainer:
 
         print(self.data_dir)
         start_time = time.time()
-        min, max = compute_global_min_max_and_save(self.data_dir)
-        # mean, std = compute_global_mean_and_std(self.data_dir)
+        # min, max = compute_global_min_max_and_save(self.data_dir)
+        mean, std = compute_global_mean_and_std(self.data_dir)
         end_time = time.time()
         execution_time = end_time - start_time
         print(f"Execution time: {execution_time} seconds")
 
         transform_train = transforms.Compose([
-            LogScale(min, max),
+            LogScaleZScoreNormalize(mean, std),
             RandomCrop(output_size=(128,128)),
             RandomHorizontalFlip(),
             ToTensor()
@@ -108,7 +108,6 @@ class Trainer:
         ### initialize network ###
 
         net = NewUNet().to(self.device)
-        # net = UNet(nch_in=1, nch_out=1)
 
         # init_weights(net, init_type='kaiming', init_gain=1e-20)
         # init_weights(net, init_type='normal', init_gain=0.02)
@@ -143,6 +142,8 @@ class Trainer:
 
                 input_stack = input_stack.to(self.device)
                 target_img = target_img.to(self.device)
+
+                # plot_intensity_distribution(input_stack)
 
                 # Forward pass: compute the network output on input_img
                 output_img = net(input_stack)
@@ -180,7 +181,7 @@ class Trainer:
 
                     # plot_intensity_distribution(output_img)
 
-                    for j in range(target_img.shape[0]):
+                    for j in range(1): #range(target_img.shape[0]):
                         # Save each input image in the stack
                         for c in range(input_imgs.shape[-1]):  # Iterate over channels/input images
                             input_img = input_imgs[j, :, :, c]
