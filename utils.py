@@ -180,20 +180,29 @@ def load_min_max_params(dir):
 
 
 
-def plot_intensity_distribution(image_array, block_execution=True):
+def plot_intensity_distribution(image_array, title='1', block_execution=True):
     """
     Plots the intensity distribution and controls execution flow based on 'block_execution'.
     """
+    # Check if the input is a PyTorch tensor and convert it to a NumPy array if so
+    if isinstance(image_array, torch.Tensor):
+        # Ensure it's on the CPU and convert to NumPy
+        image_array = image_array.detach().numpy()
+
+    print(np.max(image_array))
+
     # Create a new figure for each plot to avoid conflicts
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.hist(image_array.flatten(), bins=50, color='blue', alpha=0.7)
-    ax.set_title('Intensity Distribution')
+    ax.set_title('Intensity Distribution '+ title)
     ax.set_xlabel('Intensity Value')
     ax.set_ylabel('Frequency')
     ax.grid(True, which='both', linestyle='--', linewidth=0.5)
     
     if block_execution:
         plt.show()
+        plt.pause(1)
+        plt.close(fig)
     else:
         plt.draw()
         plt.pause(1)  # Allows GUI to update
@@ -292,5 +301,24 @@ def tensor_to_image(tensor, image_path):
 
 
 
+def plot_intensity_line_distribution(image, title='1', bins=200):
+    plt.figure(figsize=(10, 5))
 
+    if isinstance(image, torch.Tensor):
+        # Ensure it's on the CPU and convert to NumPy
+        image = image.detach().numpy()
+
+    # Use numpy.histogram to bin the pixel intensity data, using the global min and max
+    intensity_values, bin_edges = np.histogram(image, bins=bins, range=(np.min(image), np.max(image)))
+    # Calculate bin centers from edges
+    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+
+    plt.plot(bin_centers, intensity_values, label='Pixel Intensity Distribution')
+    
+    plt.title('Pixel Intensity Distribution ' + title)
+    plt.xlabel('Pixel Intensity')
+    plt.ylabel('Frequency')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
 

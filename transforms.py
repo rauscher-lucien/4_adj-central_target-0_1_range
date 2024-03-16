@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import torch
 
+from utils import *
+
 class Normalize(object):
     """
     Normalize an image using mean and standard deviation.

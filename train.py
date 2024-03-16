@@ -86,6 +86,7 @@ class Trainer:
         ])
 
         transform_inv_train = transforms.Compose([
+            BackTo01Range(),
             ToNumpy()
         ])
 
@@ -108,9 +109,6 @@ class Trainer:
         ### initialize network ###
 
         net = NewUNet().to(self.device)
-
-        # init_weights(net, init_type='kaiming', init_gain=1e-20)
-        # init_weights(net, init_type='normal', init_gain=0.02)
 
         N2N_loss = nn.MSELoss().to(self.device)
 
@@ -143,8 +141,6 @@ class Trainer:
                 input_stack = input_stack.to(self.device)
                 target_img = target_img.to(self.device)
 
-                # plot_intensity_distribution(input_stack)
-
                 # Forward pass: compute the network output on input_img
                 output_img = net(input_stack)
 
@@ -174,14 +170,7 @@ class Trainer:
                     target_img = transform_inv_train(target_img)[..., 0]  # Assuming target_img is [N, H, W, 1] and you want the first channel
                     output_img = transform_inv_train(output_img)[..., 0]  # Same assumption as target_img
 
-                    # Normalize images
-                    # input_imgs = np.clip(input_imgs, 0, 1)
-                    # target_img = np.clip(target_img, 0, 1)
-                    # output_img = np.clip(output_img, 0, 1)
-
-                    # plot_intensity_distribution(output_img)
-
-                    for j in range(1): #range(target_img.shape[0]):
+                    for j in range(target_img.shape[0]):
                         # Save each input image in the stack
                         for c in range(input_imgs.shape[-1]):  # Iterate over channels/input images
                             input_img = input_imgs[j, :, :, c]
@@ -190,6 +179,8 @@ class Trainer:
                         # Save target and output images
                         plt.imsave(os.path.join(self.train_results_dir, f"{j}_target.png"), target_img[j, :, :], cmap='gray')
                         plt.imsave(os.path.join(self.train_results_dir, f"{j}_output.png"), output_img[j, :, :], cmap='gray')
+
+                    #plot_intensity_line_distribution(output_img, title='1', bins=200)
 
             # Saving model checkpoint does not depend on saving images, so it remains the same.
             if (epoch % self.num_freq_save) == 0:
