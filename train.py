@@ -6,6 +6,7 @@ import time
 import logging
 
 from torchvision import transforms
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from utils import *
 from transforms import *
@@ -73,7 +74,7 @@ class Trainer:
         print(self.data_dir)
         start_time = time.time()
         # min, max = compute_global_min_max_and_save(self.data_dir)
-        mean, std = compute_global_mean_and_std(self.data_dir)
+        mean, std = compute_global_mean_and_std(self.data_dir, self.checkpoints_dir)
         end_time = time.time()
         execution_time = end_time - start_time
         print(f"Execution time: {execution_time} seconds")
@@ -114,12 +115,14 @@ class Trainer:
 
         params = net.parameters()
 
-        optimG = torch.optim.Adam(params, self.lr, betas=(0.5, 0.999))
+        optimizer = torch.optim.Adam(params, self.lr, betas=(0.5, 0.999))
+
+        #scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=10, verbose=True)
 
         st_epoch = 0
         if self.train_continue == 'on':
             print(self.checkpoints_dir)
-            net, optimG, st_epoch = self.load(self.checkpoints_dir, net, self.load_epoch, optimG)
+            net, optimizer, st_epoch = self.load(self.checkpoints_dir, net, self.load_epoch, optimizer)
 
 
         for epoch in range(st_epoch + 1, self.num_epoch + 1):
@@ -133,10 +136,10 @@ class Trainer:
                 def should(freq):
                     return freq > 0 and (batch % freq == 0 or batch == num_batch_train)
 
-                # Assuming 'data' is a tuple of (input_batch, target_batch)
-                # and each element in 'data' has a shape of [1, 8, 1, 64, 64] due to batch_size=1 in DataLoader
-                # Squeeze the unnecessary outer batch dimension
                 input_stack, target_img = data
+
+                # print(input_stack.min())
+                # plot_intensity_line_distribution(input_stack, title='tensor')
 
                 input_stack = input_stack.to(self.device)
                 target_img = target_img.to(self.device)
@@ -145,7 +148,7 @@ class Trainer:
                 output_img = net(input_stack)
 
                 # Reset gradients for the current batch
-                optimG.zero_grad()
+                optimizer.zero_grad()
 
                 # Compute loss using the output from the network and the target_img
                 loss = N2N_loss(output_img, target_img)
@@ -154,7 +157,9 @@ class Trainer:
                 loss.backward()
 
                 # Perform a single optimization step (parameter update)
-                optimG.step()
+                optimizer.step()
+
+                #scheduler.step(loss)
 
                 # Store the loss for this batch
                 loss_train.append(loss.item())  # .item() converts a single-element tensor to a scalar
@@ -180,8 +185,18 @@ class Trainer:
                         plt.imsave(os.path.join(self.train_results_dir, f"{j}_target.png"), target_img[j, :, :], cmap='gray')
                         plt.imsave(os.path.join(self.train_results_dir, f"{j}_output.png"), output_img[j, :, :], cmap='gray')
 
-                    #plot_intensity_line_distribution(output_img, title='1', bins=200)
+                    # if np.any(input_imgs == 0):
+
+                    #     zero_coords = np.where(input_imgs == 0)
+
+                    #     if zero_coords[0].size > 0:
+                    #         print("Coordinates of zero values after scaling:")
+                    #         for coord in zip(*zero_coords):
+                    #             print(coord)
+
+                    #     plot_intensity_line_distribution(input_imgs, title='1')
+                    #     print(1)
 
             # Saving model checkpoint does not depend on saving images, so it remains the same.
             if (epoch % self.num_freq_save) == 0:
-                self.save(self.checkpoints_dir, net, optimG, epoch)
+                self.save(self.checkpoints_dir, net, optimizer, epoch)

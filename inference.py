@@ -33,9 +33,9 @@ def main():
     # project_dir = os.path.join('Z:\\', 'members', 'Rauscher', 'projects', '4_adj-central_target-0_1_range')
     project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
     data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'big_data_small', 'good_sample-unidentified')
-    name = 'test-log_scale-1'
-    inference_name = 'inference_102-mouse_embryo'
-    load_epoch = 102
+    name = 'test-log_scale-2'
+    inference_name = 'inference_160-good_smaple-unidentified'
+    load_epoch = 160
 
 
     #********************************************************#
@@ -62,7 +62,7 @@ def main():
         device = torch.device("cpu")
 
     # min, max = load_min_max_params(dir=checkpoints_dir)
-    mean, std = load_normalization_params(data_dir=data_dir)
+    mean, std = load_normalization_params(checkpoints_dir)
     
     inf_transform = transforms.Compose([
         LogScaleZScoreNormalizeInference(mean, std),

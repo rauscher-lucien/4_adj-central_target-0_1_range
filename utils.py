@@ -64,7 +64,7 @@ def normalize_dataset(dataset):
     return normalized_dataset
 
 
-def compute_global_mean_and_std(dataset_path):
+def compute_global_mean_and_std(dataset_path, checkpoints_path):
     """
     Computes and saves the global mean and standard deviation across all TIFF stacks
     in the given directory and its subdirectories, saving the results in the same directory.
@@ -86,13 +86,13 @@ def compute_global_mean_and_std(dataset_path):
     global_std = np.mean(all_stds)
     
     # Define the save_path in the same directory as the dataset
-    save_path = os.path.join(dataset_path, 'normalization_params.pkl')
+    save_path = os.path.join(checkpoints_path, 'normalization_params.pkl')
 
     # Save the computed global mean and standard deviation to a file
     with open(save_path, 'wb') as f:
         pickle.dump({'mean': global_mean, 'std': global_std}, f)
     
-    print(f"Global mean and std parameters saved to {save_path}")
+    print(f"Global mean and std parameters saved to {checkpoints_path}")
     return global_mean, global_std
 
 
@@ -126,9 +126,6 @@ def denormalize_image(normalized_img, mean, std):
     original_img = (normalized_img * std) + mean
     return original_img.astype(np.float32)
 
-
-import os
-import pickle
 
 def load_normalization_params(data_dir):
     """

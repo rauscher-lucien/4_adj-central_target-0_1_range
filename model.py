@@ -70,27 +70,27 @@ class NewUNet(nn.Module):
 
     def forward(self, x):
         # Forward pass through the UNet model
-        tensor_to_image(x, 'image0.png')
+        #tensor_to_image(x, 'image0.png')
         x0_a, x0_b = self.down0(x)
-        tensor_to_image(x0_b, 'image1.png')
+        #tensor_to_image(x0_b, 'image1.png')
         x1_a, x1_b = self.down1(x0_b)
-        tensor_to_image(x1_b, 'image2.png')
+        #tensor_to_image(x1_b, 'image2.png')
         x2_a, x2_b = self.down2(x1_b)
-        tensor_to_image(x2_b, 'image3.png')
+        #tensor_to_image(x2_b, 'image3.png')
         x3_a, x3_b = self.down3(x2_b)
-        tensor_to_image(x3_b, 'image4.png')
+        #tensor_to_image(x3_b, 'image4.png')
         x4 = self.conv(x3_b)
-        tensor_to_image(x4, 'image6.png')
+        #tensor_to_image(x4, 'image6.png')
         x3 = self.up4(x4, x3_a)
-        tensor_to_image(x3, 'image8.png')
+        #tensor_to_image(x3, 'image8.png')
         x2 = self.up3(x3, x2_a)
-        tensor_to_image(x2, 'image9.png')
+        #tensor_to_image(x2, 'image9.png')
         x1 = self.up2(x2, x1_a)
-        tensor_to_image(x1, 'image10.png')
+        #tensor_to_image(x1, 'image10.png')
         x0 = self.up1(x1, x0_a)
-        tensor_to_image(x0, 'image11.png')
+        #tensor_to_image(x0, 'image11.png')
         x = self.outconv(x0)
-        tensor_to_image(x, 'image12.png')
+        #tensor_to_image(x, 'image12.png')
         return x
 
     @staticmethod

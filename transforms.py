@@ -760,12 +760,33 @@ class LogScaleZScoreNormalize(object):
         """
         input_img, target_img = data
 
+        floor_value = 10000
+        adjustment = floor_value - input_img.min()
+        input_img = np.where(input_img < floor_value, input_img + adjustment, input_img)
+
+        #plot_intensity_line_distribution(input_img, title='before log')
+
         # Shift and log scale input image
         input_shifted = input_img + self.shift_value
         input_log_scaled = np.log(input_shifted)
 
+        #plot_intensity_line_distribution(input_log_scaled, title='after log')
+        #plot_intensity_line_distribution(input_img, title='before log')
+
         # Z-score normalize the log-scaled input image
         input_normalized = (input_log_scaled - self.log_mean) / self.log_std
+
+        #plot_intensity_line_distribution(input_normalized, title='after norm')
+
+        floor_value = -0.1
+        adjustment = floor_value - input_normalized.min()
+        input_normalized = np.where(input_normalized < floor_value, input_normalized + adjustment, input_normalized)
+
+        #plot_intensity_line_distribution(input_normalized, title='after clip')
+
+        floor_value = 10000
+        adjustment = floor_value - target_img.min()
+        target_img = np.where(target_img < floor_value, target_img + adjustment, target_img)
 
         # Shift and log scale target image
         target_shifted = target_img + self.shift_value
@@ -773,6 +794,12 @@ class LogScaleZScoreNormalize(object):
 
         # Z-score normalize the log-scaled target image
         target_normalized = (target_log_scaled - self.log_mean) / self.log_std
+
+        target_normalized = np.clip(target_normalized, -0.1, None)
+
+        floor_value = -0.1
+        adjustment = floor_value - target_normalized.min()
+        target_normalized = np.where(target_normalized < floor_value, target_normalized + adjustment, target_normalized)
 
         return input_normalized.astype(np.float32), target_normalized.astype(np.float32)
 

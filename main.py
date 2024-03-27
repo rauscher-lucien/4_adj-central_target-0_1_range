@@ -77,9 +77,9 @@ def main():
     else:
 
         data_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'data', 'big_data_small', 'good_sample-unidentified')
-        project_name = 'test-log_scale-1'
+        project_name = 'test-log_scale-2'
         train_continue = 'on'
-        load_epoch = 147
+        load_epoch = 102
         project_dir = os.path.join('C:\\', 'Users', 'rausc', 'Documents', 'EMBL', 'projects', '4_adj-central_target-0_1_range')
         
         print(f"Not running on server, using default data directory: {data_dir}")
